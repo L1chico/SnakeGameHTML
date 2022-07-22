@@ -6,9 +6,6 @@ const box_px = 48;
 //Еда
 const foodImg = new Image();
 foodImg.src = "icons/apple.png";
-/*
-const snake_head = new Image();
-snake_head.src = "icons/zmeyka.png"; */ 
 //Счёт
 let score = 0;
 //Массив змейки
@@ -17,16 +14,6 @@ snake[0] = {
     x:6 * box_px,
     y:6 * box_px,
 }
- 
-/* function createFood() {
-    let food = {
-        x: Math.round(Math.random()*13) * box_px,
-        y: Math.round(Math.random()*13) * box_px,
-    };
-    window.food;
-};
-createFood(); */
-
 //Создание еды
 let food = {
     x: Math.round(Math.random()*12) * box_px,
@@ -39,7 +26,6 @@ if (snake[0].x == food.x && snake[0].y == food.y) {
         y: Math.round(Math.random()*11) * box_px,
     };
 };
-
 let pause_count = 1;
 function pause () {
     switch (pause_count) {
@@ -57,25 +43,9 @@ function pause () {
             break;
     }
 }
-
 document.addEventListener("keydown", direction);
 let dir;
 function direction(event) {
-/*     switch(event.keyCode) {
-        case 37 && dir != "right":
-            dir = "left";
-            console.log("fdsfsd")
-            break;
-        case 38 && dir != "down":
-            dir = "up";
-            break;
-        case 39 && dir != "left":
-            dir = "right";
-            break;
-        case 40 && dir != "up":
-            dir = "down";
-            break;
-    } */
     if (event.keyCode == 37 && dir != "right") {
         dir = "left";
         /* console.log("left"); */
@@ -92,10 +62,6 @@ function direction(event) {
 }
 //Главная функция отрисовки игры
 function main() {
-/*     let food = {
-        x: Math.round(Math.random()*13) * box_px,
-        y: Math.round(Math.random()*13) * box_px,
-    }; */
     //Очищаем поле
     ctx.clearRect(0, 0, 624 , 624);
     //Орисовка еды
@@ -107,17 +73,6 @@ function main() {
     }
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
-    
- 
-    /* ctx.clearRect(snake[snake.length-1].x, snake[snake.length-1].y, snake[snake.length-1].x, snake[snake.length-1].y); */
- 
-    //отрезаем конец змейки
-    /* if (snake.length > 1 && snake[0].x != food.x && snake[0].y != food.y) {
-        ctx.clearRect(snakeX, snakeY, snakeX + box_px, snakeY + box_px);
-        console.log(snake.length);
-    } else if (snake.length == 1) {
-        ctx.clearRect(snakeX - box_px, snakeY - box_px, snakeX, snakeY);
-    } */
     //Проверка на еду
     if (snake[0].x == food.x && snake[0].y == food.y) {
         score++;
@@ -132,17 +87,9 @@ function main() {
                 };
             }
         })
-        /* food = {
-            x: Math.round(Math.random()*11) * box_px,
-            y: Math.round(Math.random()*11) * box_px,
-        }; */
     } else {
         snake.pop();
     }
- 
- 
- 
- 
     //Проверка на направление
     switch (dir) {
         case "left":
@@ -162,8 +109,6 @@ function main() {
         x:snakeX,
         y:snakeY,
     };
-/*     console.log(newHead);
-    console.log(snake); */
     snake.unshift(newHead);
  
     //Проверка на выход за границу поля и на столкновение
@@ -176,15 +121,6 @@ function main() {
         console.log("Game Over");
         console.log(snake.indexOf(Element));
     }});
-    /* switch (True) {
-        case newHead.x <= 0 || newHead.y <= 0 || newHead.x >= 624 || newHead.y >= 624:
-            clearInterval(game_time);
-            break;
-        default:
-            break;
-    } */
- 
- 
 }
 //Цикл игры
 let game_time = setInterval(main, 150);
